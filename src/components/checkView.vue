@@ -2,7 +2,7 @@
 	
 	<div>
 		
-		<Row type="flex" :class="[result.length>0?'hasTag':'noTag']" v-if="isNote">
+		<!-- <Row type="flex" :class="[result.length>0?'hasTag':'noTag']" v-if="isNote">
 			<Col :span="result.length>0?6:24" @click.stop.native="choice"  
 			style="display: flex;justify-content: flex-start;align-items: center;">
 				<Button type="primary">选择范围</Button>
@@ -13,7 +13,7 @@
 					</Tag>
 				</div>
 			</Col>
-		</Row>
+		</Row> -->
 		<Divider v-if="isNote"></Divider>
 		<div style="display: flex;justify-content: flex-start;align-items: center;">
 			<Input search enter-button 

@@ -70,7 +70,6 @@ export default {
 					el.style.backgroundImage = "url("+window._HOST.BASE_URL+"/ucenter/Login/registerCodeShow/"+this.rand+")";
 					el.innerHTML = '';
 					el.innerText = '';
-					// this.inter = setInterval(this.getIsOauth,3000);
 				}else{
 					this.$Message.error(res.msg);
 				}
@@ -123,15 +122,6 @@ export default {
 		refreshCode(ev){ //刷新图形验证码
 				this.$refs.codeDiv.click();
 		},
-		getIsOauth(){  //PC轮询
-			this.num = this.num+3;
-			console.log(this.num);
-			if(this.num == 30){
-				this.num = 0;
-				clearInterval(this.inter);
-				this.twoModal = true;
-			}
-		},
 		updateWx(){
 			this.autoClick();
 			this.$Message.info('刷新成功');
@@ -139,13 +129,17 @@ export default {
 		getMyInfo(){			
 			$ax.getAjaxData('/ucenter/User/myAudit',{}, res => {
 				if (res.code == 0) {
+					
 					let arr = [];
 					for(let i in res.data){
 						if(res.data[i]){
 							arr.push(i)
 						}
 					}
-					sessionStorage.login = JSON.stringify(arr);
+					console.log(res.data);
+					console.log(arr);
+					// sessionStorage.login = JSON.stringify(arr);
+					sessionStorage.login = this.$utils.encrypt(JSON.stringify(arr),window._HOST.KEY_STR);;
 					if(arr.indexOf('super')>-1){
 						this.$router.replace({name:'checkManage'});
 					}else if(arr.indexOf('news')>-1){
@@ -154,6 +148,13 @@ export default {
 						this.$router.replace({name:'checkRes'});
 					}else if(arr.indexOf('gov')>-1){
 						this.$router.replace({name:'checkAccount'});
+					}else{
+						 this.$Modal.info({
+                            title: '提示',
+                            content: '<p>您没有权限，无法进入，请联系超级管理员！</p>'
+                        });
+						this.spinShow = false;
+						this.autoClick();
 					}
 					
 				} else {

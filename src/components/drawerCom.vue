@@ -2,17 +2,6 @@
 	
 	<div>
 		<div v-if="itInfo!==null">
-		<p class="flex">
-			<RadioGroup v-model="itInfo.status" @on-change="changeResult">
-			    <Radio label="1">通过审核</Radio>
-			    <Radio label="2">拒绝通过</Radio>
-			</RadioGroup>
-			  <Select v-model="answer" style="width:200px" v-if="itInfo.status==2">
-			    <Option v-for="item in myRefuse" :value="item.id" :key="item.id">{{ item.info }}</Option>
-			</Select>
-			<Button type="primary" @click="postAudit" :disabled="itInfo.status=='0'||(itInfo.status ==2&&answer=='')">确定</Button>
-		</p>
-		<Divider />
 		<Card dis-hover style="margin: 15px;">
 			<div style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
 				<h1 style="text-align: center;padding: 10px 5px;">
@@ -27,7 +16,18 @@
 			<Divider />
 			<p v-if="itInfo!==null" v-html="textBody" class="infoBody"></p> 
 		</Card>
-		
+		<Card dis-hover style="display: inline-block;width:96%;height: 200px;margin: 15px;">
+			<p class="flex" style="margin: auto;">
+				<RadioGroup v-model="itInfo.status" @on-change="changeResult">
+				    <Radio label="1">通过审核</Radio>
+				    <Radio label="2">拒绝通过</Radio>
+				</RadioGroup>
+				  <Select v-model="answer" style="width:200px" v-if="itInfo.status==2">
+				    <Option v-for="item in myRefuse" :value="item.id" :key="item.id">{{ item.info }}</Option>
+				</Select>
+				<Button type="primary" @click="postAudit" :disabled="itInfo.status=='0'||(itInfo.status ==2&&answer=='')">确定</Button>
+			</p>
+		</Card>
 		
 		</div>
 	</div>
@@ -177,17 +177,17 @@ export default {
 
 <style scoped lang="less">
 	.flex{
-		display: flex;justify-content: flex-start;align-items: center;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 	.line{
 		 display: flex;
 		 justify-content: space-around;
 		 align-items: center;
-		 background:darkgrey;
 		 border-radius: 5px;
 		 width:auto;
-		 padding: 3px;
-		 
+		 padding: 3px;		 
 		 span{
 			 padding: 3px;
 		 }

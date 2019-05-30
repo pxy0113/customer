@@ -7,6 +7,8 @@ import 'iview/dist/styles/iview.css'
 import '../public/js/global.js'
 import xwTable from 'xw-table';
 import lottie from 'vue-lottie'
+import utils from './assets/util.js';
+Vue.prototype.$utils = utils;//加密
 
 Vue.config.productionTip = false;
 Vue.use(iView);

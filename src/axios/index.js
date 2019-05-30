@@ -74,34 +74,8 @@ axios.interceptors.response.use(
 		if(_res.data.code){
 			
 			if(_res.data.code != 0 && _res.data.code != 2081){
-				// vm.$Message.warning(_res.data.msg);
-				
+				// vm.$Message.warning(_res.data.msg);				
 			}
-		
-			switch (_res.data.code){
-				case 2081://用户未登录
-					sessionStorage.removeItem('userLogin');
-					sessionStorage.removeItem('identityType');
-					sessionStorage.removeItem('chamberId');
-					sessionStorage.removeItem('chamberName');
-					sessionStorage.removeItem('tagNaveList');
-					sessionStorage.removeItem('userAccess');
-					sessionStorage.removeItem('myCompanyList');
-					sessionStorage.removeItem('userName');
-					router.replace({ name: 'mainLogin' });
-					break;
-				case 2083://管理员未登录
-					sessionStorage.removeItem('identityType');
-					sessionStorage.removeItem('chamberId');
-					sessionStorage.removeItem('chamberName');
-					sessionStorage.removeItem('userAccess');
-					sessionStorage.removeItem('tagNaveList');
-					router.replace({ name: 'login' });
-					break;
-				default:
-					break;
-			}
-			
 		}
 		
 		return _res.data;

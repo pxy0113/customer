@@ -178,7 +178,7 @@ export default {
 }
 .act {
 	background: #f0faff;
-	border-right: 2px solid #2d8cf0 !important;
+	/* border-right: 2px solid #2d8cf0 !important; */
 }
 .normalItem {
 	height: 50px;

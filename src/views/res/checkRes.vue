@@ -135,6 +135,13 @@ export default {
 					}, params.row.audit_info?getLocalTime(params.row.audit_info.addtime):'未审核')
 				}
 			},{
+				title:'审核人',
+				align:'center',
+				width:100,
+				render: (h,params) => {
+					return h ('span',params.row.audit_info?params.row.audit_info.audit_name:'-')
+				}
+			},{
 				title:'操作',
 				align:'center',
 				handle: [

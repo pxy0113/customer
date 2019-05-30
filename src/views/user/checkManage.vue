@@ -150,10 +150,10 @@ export default {
 					}
 				});
 			}else{
-				 this.refuseList = this.$store.state.refuseList;
+				this.getRefuseList();
 			}
 		},
-		delRefuse(id,index){		
+		delRefuse(id,index){
 			$ax.getAjaxData('/ucenter/Rolemanage/delRefues', {id:id}, res => {
 				if(res.code == 0){
 					this.$Message.success('删除成功！');
@@ -221,10 +221,6 @@ export default {
 	},
     mounted () {//模板被渲染完毕之后执行
     	this.getRefuseList();
-		
-		$ax.getAjaxData('https://api.comments.hk/', {}, res => {
-			console.log(res)
-		});
 	},
 	destroyed(){//Vue 实例销毁后调用
 		
