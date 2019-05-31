@@ -136,8 +136,6 @@ export default {
 							arr.push(i)
 						}
 					}
-					console.log(res.data);
-					console.log(arr);
 					// sessionStorage.login = JSON.stringify(arr);
 					sessionStorage.login = this.$utils.encrypt(JSON.stringify(arr),window._HOST.KEY_STR);;
 					if(arr.indexOf('super')>-1){
