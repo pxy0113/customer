@@ -44,13 +44,19 @@ router.beforeEach((to, from, next) => {//会在任意路由跳转前执行，nex
 					next();
 				}else{ //权限不符合
 					router.app.$Loading.finish();//加载进度条
+					// next({
+					// 	replace: true,
+					// 	name: 'invoiceList'
+					// });
 					store.commit('setMenu',from.path);
+					console.log('???没有')
 					next({
 						replace: true,
 						name: 'error-401'
 					});
 				}
 			}else{
+				store.commit('setMenu',to.path);
 				next();
 			}
 		}else{		

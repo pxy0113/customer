@@ -25,17 +25,24 @@ export const check = (routerList,userAccess) => { //fish
 }
 export const checkRoute = (routerAccess, userAccess) => { //路由权限,用户权限 fish
 	let access = JSON.parse(userAccess)
-	if((routerAccess && routerAccess.length > 0) && (access && access.length > 0)){
-		let is = false;
-		access.forEach(item =>{
-			if(routerAccess.indexOf(item)>-1){
-				is = true;
-			}
-		})
-		return is;
+	// if((routerAccess && routerAccess.length > 0) && (access && access.length > 0)){ //页面有权限且自己也有权限的时候判断
+	if(routerAccess&&routerAccess.length >0){ //页面有权限设置
+		if(access && access.length > 0){//个人有权限
+			let is = false;
+			access.forEach(item =>{
+				if(routerAccess.indexOf(item)>-1){
+					is = true;
+				}
+			});
+			return is;
+		}else{
+			return false;
+		}
+
 		// return routerAccess.some((a,index) => a == item);权限是单一的时候['admin']可以用
-	}else{//用户没权限时，或者该路由没权限的时候true
+	}else {//该路由没权限的时候true
 		return true;
+		console.log('页面没权限呢 ')
 	}
 }
 export const checkRouter = (routers,userAccess) => { //fish 用于过滤没权限的菜单

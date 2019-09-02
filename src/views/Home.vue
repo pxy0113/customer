@@ -146,7 +146,7 @@ export default {
 	height: 100vh;
 }
 .layout-nav {
-	width: 600px;
+	width: 900px;
 	margin: 0 auto;
 	margin-left: 20px;
 }

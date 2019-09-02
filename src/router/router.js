@@ -77,7 +77,7 @@ export default [
 			},
 		]
 	},
-		{
+	{
 		path: '/user',
 		name: 'user',
 		meta:{
@@ -102,10 +102,29 @@ export default [
 				meta: {
 					title: '审核管理',
 					icon: 'ios-more',
-					access:['super']
+					access:['super','normal']
 				},
 				component: () => import('@/views/user/checkManage.vue')
 			},
+		]
+	},
+	{	
+		path:'/invoice',
+		name:'invoice',
+		meta:{
+			title:'开票列表'
+		},
+		component: Main,
+		children: [
+			{
+				path: 'invoiceList',
+				name: 'invoiceList',
+				meta: {
+					title: '开票列表',
+					icon: 'ios-more'
+				},
+				component: () => import('@/views/invoice/invoiceList.vue')
+			}
 		]
 	},
 	{

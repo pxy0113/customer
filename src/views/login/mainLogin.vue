@@ -137,7 +137,9 @@ export default {
 						}
 					}
 					// sessionStorage.login = JSON.stringify(arr);
-					sessionStorage.login = this.$utils.encrypt(JSON.stringify(arr),window._HOST.KEY_STR);;
+
+					sessionStorage.login = this.$utils.encrypt(JSON.stringify(arr),window._HOST.KEY_STR);
+					
 					if(arr.indexOf('super')>-1){
 						this.$router.replace({name:'checkManage'});
 					}else if(arr.indexOf('news')>-1){
@@ -147,12 +149,13 @@ export default {
 					}else if(arr.indexOf('gov')>-1){
 						this.$router.replace({name:'checkAccount'});
 					}else{
-						 this.$Modal.info({
-                            title: '提示',
-                            content: '<p>您没有权限，无法进入，请联系超级管理员！</p>'
-                        });
-						this.spinShow = false;
-						this.autoClick();
+						this.$router.replace({name:'invoiceList'});
+						//  this.$Modal.info({
+      //                       title: '提示',
+      //                       content: '<p>您没有权限，无法进入，请联系超级管理员！</p>'
+      //                   });
+						// this.spinShow = false;
+						// this.autoClick();
 					}
 					
 				} else {
